@@ -1,4 +1,5 @@
 package partyrobot
+import "fmt"
 
 // Welcome greets a person by name.
 func Welcome(name string) string {
@@ -7,7 +8,7 @@ func Welcome(name string) string {
 
 // HappyBirthday wishes happy birthday to the birthday person and exclaims their age.
 func HappyBirthday(name string, age int) string {
-	panic("Please implement the HappyBirthday function")
+	return fmt.Sprintf("Happy birthday %s! You are now %d years old!", name, age)
 }
 
 // AssignTable assigns a table to each guest.
