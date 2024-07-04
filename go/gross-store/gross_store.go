@@ -29,7 +29,31 @@ func AddItem(bill, units map[string]int, item, unit string) bool {
 
 // RemoveItem removes an item from customer bill.
 func RemoveItem(bill, units map[string]int, item, unit string) bool {
-	panic("Please implement the RemoveItem() function")
+	// Return false if the given item is not in the bill
+	item_value, item_exists := bill[item]
+	if !item_exists{
+		return item_exists
+	}
+
+	// Return false if the given unit is not in the units map.
+	unit_value, unit_exists := units[unit]
+	if !unit_exists{
+		return unit_exists
+	}
+
+	// Return false if the new quantity would be less than 0.
+	item_value -= unit_value
+	if item_value < 0 {
+		return false
+	}
+
+	if item_value == 0 {
+		delete(bill, item)
+	} else {
+		bill[item] = item_value
+	}
+	
+	return true
 }
 
 // GetItem returns the quantity of an item that the customer has in his/her bill.
