@@ -1,20 +1,38 @@
 package raindrops
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func Convert(number int) string {
 	result := ""
-	if number%3 == 0 {
-		result += "Pling"
+	sounds, keys := prepareSoundMap()
+
+	for _, raindrop := range keys {
+		if number%raindrop == 0 {
+			result += sounds[raindrop]
+		}
 	}
-	if number%5 == 0 {
-		result += "Plang"
+	if result != "" {
+		return result
 	}
-	if number%7 == 0 {
-		result += "Plong"
+
+	return fmt.Sprint(number)
+}
+
+func prepareSoundMap() (map[int]string, []int) {
+	sounds := map[int]string{
+		3: "Pling",
+		5: "Plang",
+		7: "Plong",
 	}
-	if result == "" {
-		return fmt.Sprint(number)
+
+	keys := make([]int, 0, len(sounds))
+	for k := range sounds {
+		keys = append(keys, k)
 	}
-	return result
+	sort.Ints(keys)
+
+	return sounds, keys
 }
