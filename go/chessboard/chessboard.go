@@ -21,7 +21,17 @@ func CountInFile(cb Chessboard, file string) int {
 // CountInRank returns how many squares are occupied in the chessboard,
 // within the given rank.
 func CountInRank(cb Chessboard, rank int) int {
-	panic("Please implement CountInRank()")
+	occupied := 0
+	if rank <= 0 || rank > len(cb) {
+		return occupied
+	}
+	for _, file := range cb {
+		if file[rank-1] {
+			occupied += 1
+			continue
+		}
+	}
+	return occupied
 }
 
 // CountAll should count how many squares are present in the chessboard.
