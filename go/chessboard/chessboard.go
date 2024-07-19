@@ -42,5 +42,8 @@ func CountAll(cb Chessboard) int {
 // CountOccupied returns how many squares are occupied in the chessboard.
 func CountOccupied(cb Chessboard) int {
 	occupied := 0
+	for rank := 1; rank <= len(cb); rank++ {
+		occupied += CountInRank(cb, rank)
+	}
 	return occupied
 }
