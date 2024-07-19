@@ -41,5 +41,6 @@ func CountAll(cb Chessboard) int {
 
 // CountOccupied returns how many squares are occupied in the chessboard.
 func CountOccupied(cb Chessboard) int {
-	return 0
+	occupied := 0
+	return occupied
 }
