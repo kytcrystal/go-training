@@ -12,7 +12,9 @@ func CollatzConjecture(n int) (int, error) {
 			n /= 2
 			steps += 1
 		} else {
-			return steps, nil
+			n *= 3
+			n += 1
+			steps += 1
 		}
 	}
 	
