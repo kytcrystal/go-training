@@ -16,7 +16,7 @@ func DivideFood(fc FodderCalculator, nc int) (float64, error) {
 
 // TODO: define the 'ValidateInputAndDivideFood' function
 func ValidateInputAndDivideFood(fc FodderCalculator, nc int) (float64, error) {
-	return 0.0, nil
+	return DivideFood(fc, nc)
 }
 // TODO: define the 'ValidateNumberOfCows' function
 func ValidateNumberOfCows(nc int) error {
