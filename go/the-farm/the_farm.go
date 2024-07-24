@@ -23,7 +23,13 @@ func ValidateInputAndDivideFood(fc FodderCalculator, nc int) (float64, error) {
 	}
 	return DivideFood(fc, nc)
 }
+
 // TODO: define the 'ValidateNumberOfCows' function
+var errNumberOfCows = errors.New("cows are invalid")
+
 func ValidateNumberOfCows(nc int) error {
+	if nc <= 0 {
+		return errNumberOfCows
+	}
 	return nil
 }
