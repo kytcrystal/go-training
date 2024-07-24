@@ -1,6 +1,9 @@
 package thefarm
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // TODO: define the 'DivideFood' function
 func DivideFood(fc FodderCalculator, nc int) (float64, error) {
@@ -13,7 +16,7 @@ func DivideFood(fc FodderCalculator, nc int) (float64, error) {
 		return 0, err
 	}
 	totalFood := amount * factor
-	return totalFood/float64(nc), nil
+	return totalFood / float64(nc), nil
 }
 
 // TODO: define the 'ValidateInputAndDivideFood' function
@@ -25,11 +28,27 @@ func ValidateInputAndDivideFood(fc FodderCalculator, nc int) (float64, error) {
 }
 
 // TODO: define the 'ValidateNumberOfCows' function
-var errNumberOfCows = errors.New("cows are invalid")
+type NumberOfCowsError struct {
+	number string
+	details string
+}
+
+func (e *NumberOfCowsError) Error() string {
+	return fmt.Sprintf("%v cows are invalid: %s", e.number, e.details)
+}
 
 func ValidateNumberOfCows(nc int) error {
-	if nc <= 0 {
-		return errNumberOfCows
+	if nc < 0 {
+		return &NumberOfCowsError{
+			number: fmt.Sprintf("%v",nc),
+			details: "there are no negative cows",
+		}	
+	}
+	if nc == 0 {
+		return &NumberOfCowsError{
+			number: fmt.Sprintf("%v",nc),
+			details: "no cows don't need food",
+		}	
 	}
 	return nil
 }
